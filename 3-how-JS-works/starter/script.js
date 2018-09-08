@@ -1,21 +1,34 @@
 ///////////////////////////////////////
 // Lecture: Hoisting
 
+/*
+// Functions
+calculateAge(1995);
 
+function calculateAge(year){
+    console.log(2018 - year);
+}
 
+// retirement(1956); // Doesn't work
 
+var retirement = function(year){
+    console.log(65 - (2018 - year));
+};
 
+// Variable
 
+console.log(age); // undefined
+var age = 23;
+console.log(age);
 
+function foo(){
+    var age = 65;
+    console.log(age);
+}
 
-
-
-
-
-
-
-
-
+foo();
+console.log(age);
+*/
 
 ///////////////////////////////////////
 // Lecture: Scoping
@@ -67,11 +80,34 @@ function third() {
 ///////////////////////////////////////
 // Lecture: The this keyword
 
+//console.log(this); // Window
 
+function calculateAge(year){
+    console.log(2018-year);
+    console.log(this);
+}
+calculateAge(1990);
 
+var john = {
+    name: 'John',
+    yearOfBirth: 1990,
+    calculateAge: function(){
+        console.log(this);
+        console.log(2016 - this.yearOfBirth);
 
+        function innerFunction() {
+            console.log(this);
+        }
+        innerFunction();
+    }
+};
 
+john.calculateAge();
 
+var mike = {
+    name: 'Mike',
+    yearOfBirth: 1984
+};
 
-
-
+mike.calculateAge = john.calculateAge;
+mike.calculateAge();
